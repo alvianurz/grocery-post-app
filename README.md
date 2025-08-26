@@ -1,36 +1,310 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CodeGuide Starter Kit
+
+A modern web application starter template built with Next.js 15, featuring authentication, database integration, and dark mode support.
+
+## Tech Stack
+
+- **Framework:** [Next.js 15](https://nextjs.org/) (App Router with Turbopack)
+- **Language:** TypeScript
+- **Authentication:** [Better Auth](https://better-auth.com/)
+- **Database:** [Drizzle ORM](https://orm.drizzle.team/) with PostgreSQL
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
+- **UI Components:** [shadcn/ui](https://ui.shadcn.com/) (New York style)
+- **Theme System:** [next-themes](https://github.com/pacocoursey/next-themes)
+- **Icons:** [Lucide React](https://lucide.dev/)
+
+## Prerequisites
+
+Before you begin, ensure you have the following:
+- Node.js 18+ installed
+- Docker and Docker Compose (for database setup)
+- Generated project documents from [CodeGuide](https://codeguide.dev/) for best development experience
 
 ## Getting Started
 
-First, run the development server:
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd codeguide-starter
+   ```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+2. **Install dependencies**
+   ```bash
+   npm install
+   # or
+   yarn install
+   # or
+   pnpm install
+   ```
+
+3. **Environment Variables Setup**
+   - Copy the `.env.example` file to `.env.local`:
+     ```bash
+     cp .env.example .env.local
+     ```
+   - Fill in the environment variables in `.env.local` (see Configuration section below)
+
+4. **Start the development server**
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   # or
+   pnpm dev
+   ```
+
+5. **Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.**
+
+## Configuration
+
+### Option 1: Docker Setup (Recommended)
+1. **Start PostgreSQL with Docker:**
+   ```bash
+   npm run db:up
+   ```
+   This starts PostgreSQL in a Docker container with default credentials.
+
+2. **Push database schema:**
+   ```bash
+   npm run db:push
+   ```
+
+### Option 2: Local Database Setup
+1. Create a PostgreSQL database locally
+2. Add your database URL to `.env.local`:
+   ```env
+   DATABASE_URL=postgresql://username:password@localhost:5432/database_name
+   ```
+3. Run database migrations:
+   ```bash
+   npm run db:push
+   ```
+
+## Environment Variables
+
+Create a `.env.local` file in the root directory with the following variables:
+
+```env
+# Database (Docker default - change if using local database)
+DATABASE_URL=postgresql://postgres:postgres@localhost:5432/codeguide
+
+# Better Auth
+BETTER_AUTH_SECRET=your-super-secret-key-change-in-production
+BETTER_AUTH_URL=http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- 🔐 Authentication with Better Auth (email/password)
+- 🗄️ PostgreSQL Database with Drizzle ORM
+- 🎨 40+ shadcn/ui components (New York style)
+- 🌙 Dark mode with system preference detection
+- 🚀 App Router with Server Components and Turbopack
+- 📱 Responsive design with TailwindCSS v4
+- 🎯 Type-safe database operations
+- 🔒 Modern authentication patterns
+- 🐳 Full Docker support with multi-stage builds
+- 🚀 Production-ready deployment configuration
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Structure
 
-## Learn More
+```
+codeguide-starter/
+├── app/                        # Next.js app router pages
+│   ├── globals.css            # Global styles with dark mode
+│   ├── layout.tsx             # Root layout with providers
+│   └── page.tsx               # Main page
+├── components/                # React components
+│   └── ui/                    # shadcn/ui components (40+)
+├── db/                        # Database configuration
+│   ├── index.ts              # Database connection
+│   └── schema/               # Database schemas
+├── docker/                    # Docker configuration
+│   └── postgres/             # PostgreSQL initialization
+├── hooks/                     # Custom React hooks
+├── lib/                       # Utility functions
+│   ├── auth.ts               # Better Auth configuration
+│   └── utils.ts              # General utilities
+├── auth-schema.ts            # Authentication schema
+├── docker-compose.yml        # Docker services configuration
+├── Dockerfile                # Application container definition
+├── drizzle.config.ts         # Drizzle configuration
+└── components.json           # shadcn/ui configuration
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Database Integration
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This starter includes modern database integration:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Drizzle ORM** for type-safe database operations
+- **PostgreSQL** as the database provider
+- **Better Auth** integration with Drizzle adapter
+- **Database migrations** with Drizzle Kit
 
-## Deploy on Vercel
+## Development Commands
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Application
+- `npm run dev` - Start development server with Turbopack
+- `npm run build` - Build for production with Turbopack
+- `npm start` - Start production server
+- `npm run lint` - Run ESLint
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Database
+- `npm run db:up` - Start PostgreSQL in Docker
+- `npm run db:down` - Stop PostgreSQL container
+- `npm run db:dev` - Start development PostgreSQL (port 5433)
+- `npm run db:dev-down` - Stop development PostgreSQL
+- `npm run db:push` - Push schema changes to database
+- `npm run db:generate` - Generate Drizzle migration files
+- `npm run db:studio` - Open Drizzle Studio (database GUI)
+
+### Docker
+- `npm run docker:build` - Build application Docker image
+- `npm run docker:up` - Start full application stack (app + database)
+- `npm run docker:down` - Stop all containers
+- `npm run docker:logs` - View container logs
+- `npm run docker:clean` - Stop containers and clean up volumes
+
+## Docker Development
+
+### Quick Start with Docker
+```bash
+# Start the entire stack (recommended for new users)
+npm run docker:up
+
+# View logs
+npm run docker:logs
+
+# Stop everything
+npm run docker:down
+```
+
+### Development Workflow
+```bash
+# Option 1: Database only (develop app locally)
+npm run db:up          # Start PostgreSQL
+npm run dev            # Start Next.js development server
+
+# Option 2: Full Docker stack
+npm run docker:up      # Start both app and database
+```
+
+### Docker Services
+
+The `docker-compose.yml` includes:
+
+- **postgres**: Main PostgreSQL database (port 5432)
+- **postgres-dev**: Development database (port 5433) - use `--profile dev`
+- **app**: Next.js application container (port 3000)
+
+### Docker Profiles
+
+```bash
+# Start development database on port 5433
+docker-compose --profile dev up postgres-dev -d
+
+# Or use the npm script
+npm run db:dev
+```
+
+## Deployment
+
+### Production Deployment
+
+#### Option 1: Docker Compose (VPS/Server)
+
+1. **Clone and setup on your server:**
+   ```bash
+   git clone <your-repo>
+   cd codeguide-starter
+   cp .env.example .env.local
+   ```
+
+2. **Configure environment variables:**
+   ```bash
+   # Edit .env.local with production values
+   DATABASE_URL=postgresql://postgres:your_secure_password@postgres:5432/codeguide
+   BETTER_AUTH_SECRET=your-very-secure-secret-key
+   BETTER_AUTH_URL=https://yourdomain.com
+   ```
+
+3. **Deploy:**
+   ```bash
+   npm run docker:up
+   ```
+
+#### Option 2: Container Registry (AWS/GCP/Azure)
+
+1. **Build and push image:**
+   ```bash
+   # Build the image
+   docker build -t your-registry/codeguide-starter:latest .
+   
+   # Push to registry
+   docker push your-registry/codeguide-starter:latest
+   ```
+
+2. **Deploy using your cloud provider's container service**
+
+#### Option 3: Vercel + External Database
+
+1. **Deploy to Vercel:**
+   ```bash
+   npm i -g vercel
+   vercel
+   ```
+
+2. **Add environment variables in Vercel dashboard:**
+   - `DATABASE_URL`: Your managed PostgreSQL connection string
+   - `BETTER_AUTH_SECRET`: Generate a secure secret
+   - `BETTER_AUTH_URL`: Your Vercel deployment URL
+
+3. **Setup database:**
+   ```bash
+   # Push schema to your managed database
+   npm run db:push
+   ```
+
+### Environment Variables for Production
+
+```env
+# Required for production
+DATABASE_URL=postgresql://user:password@host:port/database
+BETTER_AUTH_SECRET=generate-a-very-secure-32-character-key
+BETTER_AUTH_URL=https://yourdomain.com
+
+# Optional optimizations
+NODE_ENV=production
+```
+
+### Production Considerations
+
+- **Database**: Use managed PostgreSQL (AWS RDS, Google Cloud SQL, etc.)
+- **Security**: Generate strong secrets, use HTTPS
+- **Performance**: Enable Next.js output: 'standalone' for smaller containers
+- **Monitoring**: Add logging and health checks
+- **Backup**: Regular database backups
+- **SSL**: Terminate SSL at load balancer or reverse proxy
+
+### Health Checks
+
+The application includes basic health checks. You can extend them:
+
+```dockerfile
+# In Dockerfile, add health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD curl -f http://localhost:3000/api/health || exit 1
+```
+
+## AI Coding Agent Integration
+
+This starter is optimized for AI coding agents:
+
+- **Clear file structure** and naming conventions
+- **TypeScript integration** with proper type definitions
+- **Modern authentication** patterns
+- **Database schema** examples
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.

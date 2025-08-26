@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: codeguide-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: codeguide
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - codeguide-network
+
+  # Next.js Application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: codeguide-app
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/codeguide
+      - BETTER_AUTH_SECRET=your-super-secret-key-change-in-production
+      - BETTER_AUTH_URL=http://localhost:3000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    networks:
+      - codeguide-network
+
+  # Development database only
+  postgres-dev:
+    image: postgres:16-alpine
+    container_name: codeguide-postgres-dev
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: codeguide_dev
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_dev_data:/var/lib/postgresql/data
+    networks:
+      - codeguide-network
+    profiles:
+      - dev
+
+volumes:
+  postgres_data:
+    driver: local
+  postgres_dev_data:
+    driver: local
+
+networks:
+  codeguide-network:
+    driver: bridge
