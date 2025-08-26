@@ -308,3 +308,4 @@ This starter is optimized for AI coding agents:
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
+# codeguide-starter
