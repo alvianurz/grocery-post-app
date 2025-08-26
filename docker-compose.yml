@@ -7,9 +7,9 @@ services:
     container_name: codeguide-postgres
     restart: unless-stopped
     environment:
-      POSTGRES_DB: codeguide
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - "5432:5432"
     volumes:
@@ -27,7 +27,7 @@ services:
     restart: unless-stopped
     environment:
       - NODE_ENV=production
-      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/codeguide
+      - DATABASE_URL=${DATABASE_URL}
       - BETTER_AUTH_SECRET=your-super-secret-key-change-in-production
       - BETTER_AUTH_URL=http://localhost:3000
     ports:
@@ -43,9 +43,9 @@ services:
     container_name: codeguide-postgres-dev
     restart: unless-stopped
     environment:
-      POSTGRES_DB: codeguide_dev
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ${POSTGRES_DB:-postgres}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
     ports:
       - "5433:5432"
     volumes:
