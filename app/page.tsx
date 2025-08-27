@@ -36,7 +36,7 @@ export default function Home() {
             className="rounded-xl sm:w-[60px] sm:h-[60px]"
           />
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 bg-clip-text text-transparent font-parkinsans">
-            CodeGuide Starter
+            Codeguide Starter Fullstack
           </h1>
         </div>
         <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto px-4 mb-8">
