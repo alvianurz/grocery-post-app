@@ -1,6 +1,6 @@
 [![CodeGuide](/codeguide-backdrop.svg)](https://codeguide.dev)
 
-# CodeGuide Starter Kit
+# Codeguide Starter Fullstack
 
 A modern web application starter template built with Next.js 15, featuring authentication, database integration, AI capabilities, and dark mode support.
 
@@ -29,7 +29,7 @@ Before you begin, ensure you have the following:
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd codeguide-starter-kit
+   cd codeguide-starter-full-stack
    ```
 
 2. **Install dependencies**
@@ -116,7 +116,7 @@ ANTHROPIC_API_KEY=your_anthropic_api_key
 ## Project Structure
 
 ```
-codeguide-starter-kit/
+codeguide-starter-full-stack/
 ├── src/
 │   ├── app/                    # Next.js app router pages
 │   │   ├── api/chat/          # AI chat API endpoint

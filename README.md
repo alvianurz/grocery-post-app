@@ -1,4 +1,4 @@
-# CodeGuide Starter Kit
+# Codeguide Starter Fullstack
 
 A modern web application starter template built with Next.js 15, featuring authentication, database integration, and dark mode support.
 
@@ -25,7 +25,7 @@ Before you begin, ensure you have the following:
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd codeguide-starter
+   cd codeguide-starter-full-stack
    ```
 
 2. **Install dependencies**
@@ -116,7 +116,7 @@ NEXT_PUBLIC_BETTER_AUTH_URL=http://localhost:3000
 ## Project Structure
 
 ```
-codeguide-starter/
+codeguide-starter-full-stack/
 ├── app/                        # Next.js app router pages
 │   ├── globals.css            # Global styles with dark mode
 │   ├── layout.tsx             # Root layout with providers
@@ -230,7 +230,7 @@ npm run db:dev
 1. **Clone and setup on your server:**
    ```bash
    git clone <your-repo>
-   cd codeguide-starter
+   cd codeguide-starter-full-stack
    cp .env.example .env
    ```
 
@@ -256,10 +256,10 @@ npm run db:dev
 1. **Build and push image:**
    ```bash
    # Build the image
-   docker build -t your-registry/codeguide-starter:latest .
+   docker build -t your-registry/codeguide-starter-full-stack:latest .
    
    # Push to registry
-   docker push your-registry/codeguide-starter:latest
+   docker push your-registry/codeguide-starter-full-stack:latest
    ```
 
 2. **Deploy using your cloud provider's container service**
@@ -326,4 +326,4 @@ This starter is optimized for AI coding agents:
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
-# codeguide-starter
+# codeguide-starter-full-stack
