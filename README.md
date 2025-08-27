@@ -38,11 +38,11 @@ Before you begin, ensure you have the following:
    ```
 
 3. **Environment Variables Setup**
-   - Copy the `.env.example` file to `.env.local`:
+   - Copy the `.env.example` file to `.env`:
      ```bash
-     cp .env.example .env.local
+     cp .env.example .env
      ```
-   - Fill in the environment variables in `.env.local` (see Configuration section below)
+   - The default values work with Docker setup, modify as needed
 
 4. **Start the development server**
    ```bash
@@ -71,9 +71,12 @@ Before you begin, ensure you have the following:
 
 ### Option 2: Local Database Setup
 1. Create a PostgreSQL database locally
-2. Add your database URL to `.env.local`:
+2. Update your environment variables in `.env`:
    ```env
    DATABASE_URL=postgresql://username:password@localhost:5432/database_name
+   POSTGRES_DB=your_database_name
+   POSTGRES_USER=your_username
+   POSTGRES_PASSWORD=your_password
    ```
 3. Run database migrations:
    ```bash
@@ -82,15 +85,19 @@ Before you begin, ensure you have the following:
 
 ## Environment Variables
 
-Create a `.env.local` file in the root directory with the following variables:
+Create a `.env` file in the root directory with the following variables:
 
 ```env
-# Database (Docker default - change if using local database)
-DATABASE_URL=postgresql://postgres:postgres@localhost:5432/codeguide
+# Database Configuration (defaults work with Docker)
+DATABASE_URL=postgresql://postgres:postgres@localhost:5433/postgres
+POSTGRES_DB=postgres
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
 
-# Better Auth
-BETTER_AUTH_SECRET=your-super-secret-key-change-in-production
+# Authentication
+BETTER_AUTH_SECRET=your_secret_key_here
 BETTER_AUTH_URL=http://localhost:3000
+NEXT_PUBLIC_BETTER_AUTH_URL=http://localhost:3000
 ```
 
 ## Features
@@ -157,6 +164,13 @@ This starter includes modern database integration:
 - `npm run db:push` - Push schema changes to database
 - `npm run db:generate` - Generate Drizzle migration files
 - `npm run db:studio` - Open Drizzle Studio (database GUI)
+- `npm run db:reset` - Reset database (drop all tables and recreate)
+
+### Styling with shadcn/ui
+- Pre-configured with 40+ shadcn/ui components in New York style
+- Components are fully customizable and use CSS variables for theming
+- Automatic dark mode support with next-themes integration
+- Add new components: `npx shadcn@latest add [component-name]`
 
 ### Docker
 - `npm run docker:build` - Build application Docker image
@@ -217,15 +231,19 @@ npm run db:dev
    ```bash
    git clone <your-repo>
    cd codeguide-starter
-   cp .env.example .env.local
+   cp .env.example .env
    ```
 
 2. **Configure environment variables:**
    ```bash
-   # Edit .env.local with production values
-   DATABASE_URL=postgresql://postgres:your_secure_password@postgres:5432/codeguide
+   # Edit .env with production values
+   DATABASE_URL=postgresql://postgres:your_secure_password@postgres:5432/postgres
+   POSTGRES_DB=postgres
+   POSTGRES_USER=postgres
+   POSTGRES_PASSWORD=your_secure_password
    BETTER_AUTH_SECRET=your-very-secure-secret-key
    BETTER_AUTH_URL=https://yourdomain.com
+   NEXT_PUBLIC_BETTER_AUTH_URL=https://yourdomain.com
    ```
 
 3. **Deploy:**

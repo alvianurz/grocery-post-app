@@ -16,11 +16,11 @@
     "db:down": "docker compose down postgres",
     "db:dev": "docker compose --profile dev up postgres-dev -d",
     "db:dev-down": "docker compose --profile dev down postgres-dev",
+    "db:reset": "drizzle-kit drop && drizzle-kit push",
     "docker:build": "docker build -t codeguide-starter .",
     "docker:up": "docker compose up -d",
     "docker:down": "docker compose down",
-    "docker:logs": "docker compose logs -f",
-    "docker:clean": "docker compose down -v && docker system prune -f"
+    "docker:logs": "docker compose logs -f"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
