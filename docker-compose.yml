@@ -4,7 +4,7 @@ services:
   # PostgreSQL Database
   postgres:
     image: postgres:16-alpine
-    container_name: codeguide-starter-full-stack-postgres
+    container_name: codeguide-starter-fullstack-postgres
     restart: unless-stopped
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
@@ -16,14 +16,14 @@ services:
       - postgres_data:/var/lib/postgresql/data
       - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
-      - codeguide-starter-full-stack-network
+      - codeguide-starter-fullstack-network
 
   # Next.js Application
   app:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: codeguide-starter-full-stack-app
+    container_name: codeguide-starter-fullstack-app
     restart: unless-stopped
     environment:
       - NODE_ENV=production
@@ -35,12 +35,12 @@ services:
     depends_on:
       - postgres
     networks:
-      - codeguide-starter-full-stack-network
+      - codeguide-starter-fullstack-network
 
   # Development database only
   postgres-dev:
     image: postgres:16-alpine
-    container_name: codeguide-starter-full-stack-postgres-dev
+    container_name: codeguide-starter-fullstack-postgres-dev
     restart: unless-stopped
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-postgres}
@@ -51,7 +51,7 @@ services:
     volumes:
       - postgres_dev_data:/var/lib/postgresql/data
     networks:
-      - codeguide-starter-full-stack-network
+      - codeguide-starter-fullstack-network
     profiles:
       - dev
 
@@ -62,5 +62,5 @@ volumes:
     driver: local
 
 networks:
-  codeguide-starter-full-stack-network:
+  codeguide-starter-fullstack-network:
     driver: bridge

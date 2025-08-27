@@ -1,6 +1,6 @@
 # Tech Stack Document
 
-This document explains the key technologies chosen for the **codeguide-starter-full-stack** project. It’s written in everyday language so anyone—technical or not—can understand why each tool was picked and how it supports the application.
+This document explains the key technologies chosen for the **codeguide-starter** project. It’s written in everyday language so anyone—technical or not—can understand why each tool was picked and how it supports the application.
 
 ## 1. Frontend Technologies
 The frontend is everything the user sees and interacts with. For this project, we’ve used:
@@ -79,7 +79,7 @@ Performance:
 These strategies work together to give users a fast, secure experience every time.
 
 ## 6. Conclusion and Overall Tech Stack Summary
-In building **codeguide-starter-full-stack**, we chose technologies that:
+In building **codeguide-starter**, we chose technologies that:
 
 - Align with modern web standards (Next.js, React, TypeScript).
 - Provide a clear, file-based project structure for rapid onboarding.

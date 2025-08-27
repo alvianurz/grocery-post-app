@@ -29,7 +29,7 @@ Before you begin, ensure you have the following:
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd codeguide-starter-full-stack
+   cd codeguide-starter-fullstack
    ```
 
 2. **Install dependencies**
@@ -116,7 +116,7 @@ ANTHROPIC_API_KEY=your_anthropic_api_key
 ## Project Structure
 
 ```
-codeguide-starter-full-stack/
+codeguide-starter-fullstack/
 ├── src/
 │   ├── app/                    # Next.js app router pages
 │   │   ├── api/chat/          # AI chat API endpoint

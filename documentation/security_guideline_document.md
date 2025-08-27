@@ -1,6 +1,6 @@
-# Security Guidelines for codeguide-starter-full-stack
+# Security Guidelines for codeguide-starter
 
-This document defines mandatory security principles and implementation best practices tailored to the **codeguide-starter-full-stack** repository. It aligns with Security-by-Design, Least Privilege, Defense-in-Depth, and other core security tenets. All sections reference specific areas of the codebase (e.g., `/app/api/auth/route.ts`, CSS files, environment configuration) to ensure practical guidance.
+This document defines mandatory security principles and implementation best practices tailored to the **codeguide-starter** repository. It aligns with Security-by-Design, Least Privilege, Defense-in-Depth, and other core security tenets. All sections reference specific areas of the codebase (e.g., `/app/api/auth/route.ts`, CSS files, environment configuration) to ensure practical guidance.
 
 ---
 
@@ -113,4 +113,4 @@ This document defines mandatory security principles and implementation best prac
 
 ---
 
-Adherence to these guidelines will ensure that **codeguide-starter-full-stack** remains secure, maintainable, and resilient as it evolves. Regularly review and update this document to reflect new threats and best practices.
+Adherence to these guidelines will ensure that **codeguide-starter** remains secure, maintainable, and resilient as it evolves. Regularly review and update this document to reflect new threats and best practices.
