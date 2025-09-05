@@ -1,6 +1,6 @@
-# Codeguide Starter Fullstack
+# Grocery Point of Sale System
 
-A modern web application starter template built with Next.js 15, featuring authentication, database integration, and dark mode support.
+A modern full-stack web application for grocery stores built with Next.js 15, featuring customer ordering, real-time order management, inventory control, and Bluetooth receipt printing.
 
 ## Tech Stack
 
@@ -12,6 +12,7 @@ A modern web application starter template built with Next.js 15, featuring authe
 - **UI Components:** [shadcn/ui](https://ui.shadcn.com/) (New York style)
 - **Theme System:** [next-themes](https://github.com/pacocoursey/next-themes)
 - **Icons:** [Lucide React](https://lucide.dev/)
+- **Bluetooth Printing:** Web Bluetooth API
 
 ## Prerequisites
 
@@ -98,9 +99,38 @@ POSTGRES_PASSWORD=postgres
 BETTER_AUTH_SECRET=your_secret_key_here
 BETTER_AUTH_URL=http://localhost:3000
 NEXT_PUBLIC_BETTER_AUTH_URL=http://localhost:3000
+
+# Admin Credentials (for development only)
+NEXT_PUBLIC_ADMIN_EMAIL=admin@store.com
+NEXT_PUBLIC_ADMIN_PASSWORD=password
 ```
 
 ## Features
+
+- 🛒 **Customer Ordering System**
+  - Simple customer registration with name and phone number
+  - Product catalog with category browsing
+  - Real-time product search
+  - Shopping cart functionality
+  - Order placement and confirmation
+
+- 🧾 **Admin Order Management**
+  - Real-time order dashboard
+  - Order status tracking (Pending, Ready for Pickup, Completed)
+  - Detailed order views with customer information
+  - Bluetooth thermal receipt printing
+  - Order status updates
+
+- 📦 **Inventory Management**
+  - Product CRUD operations
+  - Category management
+  - Stock quantity tracking
+  - Price management
+
+- 📊 **Sales Analytics**
+  - Daily sales tracking
+  - Order statistics by status
+  - Recent orders overview
 
 - 🔐 Authentication with Better Auth (email/password)
 - 🗄️ PostgreSQL Database with Drizzle ORM
@@ -118,6 +148,19 @@ NEXT_PUBLIC_BETTER_AUTH_URL=http://localhost:3000
 ```
 codeguide-starter-fullstack/
 ├── app/                        # Next.js app router pages
+│   ├── admin/                # Admin dashboard pages
+│   │   ├── orders/           # Order management
+│   │   ├── products/         # Product management
+│   │   ├── categories/       # Category management
+│   │   ├── analytics/        # Sales analytics
+│   │   ├── login/            # Admin login
+│   │   ├── layout.tsx        # Admin layout
+│   │   └── page.tsx          # Admin dashboard
+│   ├── catalog/              # Customer product catalog
+│   ├── cart/                 # Customer shopping cart
+│   ├── customer-info/        # Customer registration
+│   ├── order-confirmation/   # Order confirmation
+│   ├── api/                  # API routes
 │   ├── globals.css            # Global styles with dark mode
 │   ├── layout.tsx             # Root layout with providers
 │   └── page.tsx               # Main page
@@ -131,6 +174,7 @@ codeguide-starter-fullstack/
 ├── hooks/                     # Custom React hooks
 ├── lib/                       # Utility functions
 │   ├── auth.ts               # Better Auth configuration
+│   ├── bluetooth-printer.ts  # Bluetooth printing utilities
 │   └── utils.ts              # General utilities
 ├── auth-schema.ts            # Authentication schema
 ├── docker-compose.yml        # Docker services configuration
@@ -165,6 +209,9 @@ This starter includes modern database integration:
 - `npm run db:generate` - Generate Drizzle migration files
 - `npm run db:studio` - Open Drizzle Studio (database GUI)
 - `npm run db:reset` - Reset database (drop all tables and recreate)
+
+### Authentication
+- `npm run setup:admin` - Create admin user with credentials from environment variables
 
 ### Styling with shadcn/ui
 - Pre-configured with 40+ shadcn/ui components in New York style
@@ -266,22 +313,34 @@ npm run db:dev
 
 #### Option 3: Vercel + External Database
 
-1. **Deploy to Vercel:**
-   ```bash
-   npm i -g vercel
-   vercel
+1. **Setup external PostgreSQL database:**
+   - Choose a managed PostgreSQL service (e.g., Supabase, Railway, Neon, or AWS RDS)
+   - Create a new database and get the connection string
+
+2. **Configure environment variables:**
+   ```env
+   DATABASE_URL=your_managed_postgresql_connection_string
+   BETTER_AUTH_SECRET=generate_a_secure_32_character_key
+   BETTER_AUTH_URL=https://your-app.vercel.app
+   NEXT_PUBLIC_BETTER_AUTH_URL=https://your-app.vercel.app
    ```
 
-2. **Add environment variables in Vercel dashboard:**
-   - `DATABASE_URL`: Your managed PostgreSQL connection string
-   - `BETTER_AUTH_SECRET`: Generate a secure secret
-   - `BETTER_AUTH_URL`: Your Vercel deployment URL
-
-3. **Setup database:**
+3. **Push database schema:**
    ```bash
-   # Push schema to your managed database
    npm run db:push
    ```
+
+4. **Deploy to Vercel:**
+   - Push your code to a GitHub repository
+   - Connect the repository to Vercel
+   - Add the environment variables in the Vercel dashboard
+   - Deploy the application
+
+5. **Create admin user:**
+   ```bash
+   npm run setup:admin
+   ```
+   Or manually create an admin user through the application's signup process.
 
 ### Environment Variables for Production
 
@@ -290,6 +349,7 @@ npm run db:dev
 DATABASE_URL=postgresql://user:password@host:port/database
 BETTER_AUTH_SECRET=generate-a-very-secure-32-character-key
 BETTER_AUTH_URL=https://yourdomain.com
+NEXT_PUBLIC_BETTER_AUTH_URL=https://yourdomain.com
 
 # Optional optimizations
 NODE_ENV=production
@@ -297,8 +357,11 @@ NODE_ENV=production
 
 ### Production Considerations
 
-- **Database**: Use managed PostgreSQL (AWS RDS, Google Cloud SQL, etc.)
-- **Security**: Generate strong secrets, use HTTPS
+- **Database**: Use managed PostgreSQL (Supabase, Railway, Neon, AWS RDS, etc.)
+- **Security**: 
+  - Generate strong secrets for `BETTER_AUTH_SECRET`
+  - Use HTTPS in production
+  - Never commit sensitive values to version control
 - **Performance**: Enable Next.js output: 'standalone' for smaller containers
 - **Monitoring**: Add logging and health checks
 - **Backup**: Regular database backups
@@ -326,4 +389,3 @@ This starter is optimized for AI coding agents:
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
-# codeguide-starter-fullstack
