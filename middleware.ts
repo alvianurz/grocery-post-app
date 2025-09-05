@@ -11,7 +11,8 @@ export async function middleware(request: NextRequest) {
   // Check if the path requires authentication
   const isProtectedPath = protectedPaths.some(path => pathname.startsWith(path));
   
-  if (isProtectedPath) {
+  // Only check auth if auth is initialized (has database connection)
+  if (isProtectedPath && auth) {
     // Use better-auth to check for a valid session
     const session = await auth.api.getSession({
       headers: request.headers,
