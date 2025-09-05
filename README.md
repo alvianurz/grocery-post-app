@@ -342,6 +342,21 @@ npm run db:dev
    ```
    Or manually create an admin user through the application's signup process.
 
+#### Redeployment to Vercel
+
+To redeploy your application to Vercel after making changes:
+
+1. **Commit your changes:**
+   ```bash
+   git add .
+   git commit -m "Description of your changes"
+   git push origin main
+   ```
+
+2. **Trigger redeployment:**
+   - Vercel will automatically deploy when you push to your connected GitHub repository
+   - Alternatively, you can trigger redeployment manually from the Vercel dashboard
+
 ### Environment Variables for Production
 
 ```env
