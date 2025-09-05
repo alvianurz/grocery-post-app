@@ -48,7 +48,7 @@ export default function AdminOrderDetailPage({ params }: { params: { id: string 
   useEffect(() => {
     fetchOrder();
     setIsBluetoothSupported(isWebBluetoothSupported());
-  }, [params.id]);
+  }, [params.id, fetchOrder]);
 
   const fetchOrder = async () => {
     try {
@@ -197,7 +197,7 @@ export default function AdminOrderDetailPage({ params }: { params: { id: string 
       <div className="flex items-center justify-center h-64">
         <div className="text-center">
           <h2 className="text-2xl font-bold mb-4">Order Not Found</h2>
-          <p className="text-muted-foreground mb-6">The order you're looking for doesn't exist.</p>
+          <p className="text-muted-foreground mb-6">The order you&apos;re looking for doesn&apos;t exist.</p>
           <Button onClick={() => router.push("/admin/orders")}>Back to Orders</Button>
         </div>
       </div>

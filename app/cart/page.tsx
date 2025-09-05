@@ -38,7 +38,7 @@ export default function ShoppingCartPage() {
     }
 
     fetchProducts();
-  }, [router]);
+  }, [router, fetchProducts]);
 
   const fetchProducts = async () => {
     try {

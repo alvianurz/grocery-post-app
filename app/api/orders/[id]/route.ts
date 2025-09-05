@@ -27,7 +27,7 @@ export async function GET(
         phoneNumber: "Customer Phone", // This will be overridden by the frontend
       },
       // Use the actual items from the order with real product names
-      orderItems: order.items.map((item: any) => ({
+      orderItems: order.items.map((item: { quantity: number; price: string; productId: string }) => ({
         quantity: item.quantity,
         priceAtPurchase: item.price,
         product: {

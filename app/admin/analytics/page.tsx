@@ -31,7 +31,7 @@ export default function AdminAnalyticsPage() {
 
   useEffect(() => {
     fetchAnalytics();
-  }, []);
+  }, [fetchAnalytics]);
 
   const fetchAnalytics = async () => {
     try {

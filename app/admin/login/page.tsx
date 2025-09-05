@@ -39,11 +39,12 @@ export default function AdminLoginPage() {
         // Redirect to admin dashboard
         router.push("/admin/orders");
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Login error:", error);
+      const errorMessage = error instanceof Error ? error.message : "Invalid email or password. Please try again.";
       toast({
         title: "Error",
-        description: error.message || "Invalid email or password. Please try again.",
+        description: errorMessage,
         variant: "destructive",
       });
     } finally {

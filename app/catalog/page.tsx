@@ -51,7 +51,7 @@ export default function ProductCatalogPage() {
 
     fetchProducts();
     fetchCategories();
-  }, [router]);
+  }, [router, fetchProducts, fetchCategories]);
 
   const fetchProducts = async () => {
     try {

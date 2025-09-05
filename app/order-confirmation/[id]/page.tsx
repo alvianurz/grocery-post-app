@@ -30,7 +30,7 @@ interface Order {
 
 export default function OrderConfirmationPage({ params }: { params: Promise<{ id: string }> }) {
   const [order, setOrder] = useState<Order | null>(null);
-  const [customer, setCustomer] = useState<any>(null);
+  const [customer, setCustomer] = useState<{name: string; phoneNumber: string} | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
   const { toast } = useToast();
@@ -55,7 +55,7 @@ export default function OrderConfirmationPage({ params }: { params: Promise<{ id
     params.then(unwrappedParams => {
       fetchOrder(unwrappedParams.id);
     });
-  }, [params, router]);
+  }, [params, router, fetchOrder]);
 
   const fetchOrder = async (orderId: string) => {
     try {
@@ -99,7 +99,7 @@ export default function OrderConfirmationPage({ params }: { params: Promise<{ id
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h2 className="text-2xl font-bold mb-4">Order Not Found</h2>
-          <p className="text-muted-foreground mb-6">The order you're looking for doesn't exist.</p>
+          <p className="text-muted-foreground mb-6">The order you&apos;re looking for doesn&apos;t exist.</p>
           <Button onClick={() => router.push("/catalog")}>Continue Shopping</Button>
         </div>
       </div>

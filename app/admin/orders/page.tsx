@@ -46,7 +46,7 @@ export default function AdminOrdersPage() {
     }, 30000); // Refresh every 30 seconds
     
     return () => clearInterval(interval);
-  }, []);
+  }, [fetchOrders]);
 
   const fetchOrders = async () => {
     try {
@@ -216,7 +216,7 @@ export default function AdminOrdersPage() {
             </div>
             <div className="ml-3">
               <p className="text-sm text-yellow-700">
-                <strong>Bluetooth Printing Not Available:</strong> Your browser or device doesn't support Web Bluetooth. 
+                <strong>Bluetooth Printing Not Available:</strong> Your browser or device doesn&apos;t support Web Bluetooth. 
                 For receipt printing, please use Chrome, Edge, or Opera on a compatible device.
               </p>
             </div>

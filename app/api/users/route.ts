@@ -1,7 +1,14 @@
 import { NextResponse } from "next/server";
 
 // Mock storage for users when database is not available
-const mockUsers: any[] = [];
+interface MockUser {
+  id: string;
+  name: string;
+  phoneNumber: string;
+  createdAt: Date;
+}
+
+const mockUsers: MockUser[] = [];
 
 export async function POST(request: Request) {
   try {

@@ -49,7 +49,7 @@ export default function AdminCategoriesPage() {
 
   useEffect(() => {
     fetchCategories();
-  }, []);
+  }, [fetchCategories]);
 
   const fetchCategories = async () => {
     try {
