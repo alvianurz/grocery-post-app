@@ -138,7 +138,7 @@ export default function AdminOrdersPage() {
         orderDate: new Date(order.createdAt).toLocaleString(),
         customerName: order.user.name,
         customerPhone: order.user.phoneNumber,
-        items: order.orderItems.map((item: any) => ({
+        items: order.orderItems.map((item) => ({
           name: item.product.name,
           quantity: item.quantity,
           price: parseFloat(item.priceAtPurchase)

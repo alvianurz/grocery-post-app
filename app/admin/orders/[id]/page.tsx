@@ -227,7 +227,7 @@ export default function AdminOrderDetailPage({ params }: { params: { id: string 
             </div>
             <div className="ml-3">
               <p className="text-sm text-yellow-700">
-                <strong>Bluetooth Printing Not Available:</strong> Your browser or device doesn't support Web Bluetooth. 
+                <strong>Bluetooth Printing Not Available:</strong> Your browser or device doesn&#39;t support Web Bluetooth. 
                 For receipt printing, please use Chrome, Edge, or Opera on a compatible device.
               </p>
             </div>
